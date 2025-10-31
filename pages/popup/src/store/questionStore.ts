@@ -1,4 +1,5 @@
 // import { MOCK_QUESTIONS } from '@src/consts';
+import { MOCK_QUESTIONS } from '@src/consts';
 import { evaluatePageAnswer, generatePageQuestions, summarizePageContent } from '@src/lib/ChromeAI';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
@@ -25,8 +26,8 @@ interface QuestionState {
 }
 
 export const useQuestionStore = create<QuestionState>((set, get) => ({
-  // questions: MOCK_QUESTIONS,
-  questions: [],
+  questions: MOCK_QUESTIONS,
+  // questions: [],
   isLoading: false,
   learningMaterial: '',
   pageContent: null,
@@ -60,24 +61,11 @@ export const useQuestionStore = create<QuestionState>((set, get) => ({
   },
 
   generateQuestions: async () => {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.id) return;
+    const { pageContent, setPageContent } = get();
 
-    const tabContent = await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: () => document.body.innerText,
-    });
+    if (!pageContent?.content) await setPageContent();
 
-    const content = tabContent[0].result;
-    if (!content) return;
-
-    set({
-      learningMaterial: content,
-    });
-
-    const data = await generatePageQuestions(content);
-
-    // console.log('Generated Questions:', data);
+    const data = await generatePageQuestions(pageContent!.content);
 
     set({ questions: data?.generated?.map((item: unknown[]) => ({ id: uuidv4(), ...item })) });
   },

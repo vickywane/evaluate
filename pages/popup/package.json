@@ -24,6 +24,7 @@
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
     "@extension/ui": "workspace:*",
+    "@types/dom-chromium-ai": "^0.0.10",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "react-icons": "^5.5.0",

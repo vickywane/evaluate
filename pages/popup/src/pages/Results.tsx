@@ -6,33 +6,21 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const Result = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  // const [selectedSection, setSelectedSection] = useState<string | null>(null);
-
   const { questions } = useQuestionStore();
-
-  // console.log('questions in result page:', questions);
 
   const data = useMemo(
     () =>
       questions.map(item => ({
         name: item?.topic,
         value: item?.evaluation ? item?.evaluation?.score * 10 : 0,
-        color: '#6b9080',
+        color: '#64748b',
       })),
     [questions],
   );
 
-  // const onPieEnter = (_: undefined, index: number) => {
-  //   // setActiveIndex(index);
-  // };
-
   const onPieLeave = () => {
     setActiveIndex(null);
   };
-
-  // const onPieClick = (_: undefined, index: number) => {
-  //   // setSelectedSection(data[index].name);
-  // };
 
   const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { name: string; value: number }[] }) => {
     if (active && payload && payload.length) {
@@ -67,9 +55,7 @@ const Result = () => {
                   outerRadius={150}
                   paddingAngle={2}
                   dataKey="value"
-                  // onMouseEnter={onPieEnter}
                   onMouseLeave={onPieLeave}
-                  // onClick={onPieClick}
                   className="cursor-pointer focus:outline-none">
                   {data.map((entry, index) => (
                     <Cell
@@ -98,9 +84,7 @@ const Result = () => {
             {data.map((item, index) => (
               <div
                 key={index}
-                className="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-lg p-2 transition-colors"
-                // onClick={() => setSelectedSection(item.name)}
-              >
+                className="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-lg p-2 transition-colors">
                 <div className="h-4 w-4 rounded-sm" style={{ backgroundColor: item.color }} />
                 <div className="flex-1">
                   <p className="text-foreground text-sm font-medium">{item.name}</p>

@@ -153,6 +153,10 @@ export const MOCK_QUESTIONS = [
       'The `isPending` flag',
       'The initial state passed to the hook',
     ],
+    evaluation: {
+      score: 5,
+      feedback: 'The answer is correct. The initial state is provided as an argument to the hook, not returned by it.',
+    },
   },
   {
     question_type: 'single-choice',
@@ -166,13 +170,10 @@ export const MOCK_QUESTIONS = [
       'Update form state from action results',
       'Handle user input',
     ],
-  },
-  {
-    question_type: 'short-answer',
-    question: 'What is the `fn` parameter in `useActionState` used for?',
-    hint: 'Form submission',
-    topic: 'Action Function',
-    answer: 'The function to be called when the form is submitted or a button is clicked.',
+    evaluation: {
+      score: 10,
+      feedback: 'The answer is correct. The initial state is provided as an argument to the hook, not returned by it.',
+    },
   },
   {
     question_type: 'long-answer',
@@ -180,6 +181,10 @@ export const MOCK_QUESTIONS = [
       'Explain the significance of using `useActionState` with Server Functions and how it differs from using it without Server Components.',
     hint: 'Server components',
     topic: 'Server Components',
+    evaluation: {
+      score: 1,
+      feedback: 'The answer is correct. The initial state is provided as an argument to the hook, not returned by it.',
+    },
     answer:
       'With Server Functions, `useActionState` allows for interactive forms before JavaScript execution completes on the client, enabling features like progressive enhancement. Without Server Components, it functions similarly to local component state, updating only on the client-side.',
   },
