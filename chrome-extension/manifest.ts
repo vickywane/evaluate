@@ -21,26 +21,23 @@ const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
 const manifest = {
   manifest_version: 3,
   default_locale: 'en',
-  name: '__MSG_extensionName__',
-  // browser_specific_settings: {
-  //   gecko: {
-  //     id: 'example@example.com',
-  //     strict_min_version: '109.0',
-  //   },
-  // },
+  name: 'Evaluate',
   version: packageJson.version,
-  description: '__MSG_extensionDescription__',
+  description: 'Self-assessment tool for learning materials using AI',
   host_permissions: ['<all_urls>'],
-  permissions: ['storage', 'scripting', 'tabs', 'notifications', 'sidePanel'],
-  // options_page: 'options/index.html',
-  background: {
-    service_worker: 'background.js',
-    type: 'module',
+  permissions: ['sidePanel'],
+  side_panel: {
+    default_path: 'popup/index.html',
   },
   action: {
-    default_popup: 'popup/index.html',
-    default_icon: 'icon-34.png',
+    default_title: 'Evaluate',
+    // default_popup: 'popup/index.html',
+    // default_icon: 'icon-34.png',
   },
+  // background: {
+  //   service_worker: 'background.js',
+  //   type: 'module',
+  // },
   // chrome_url_overrides: {
   //   newtab: 'new-tab/index.html',
   // },
@@ -76,9 +73,6 @@ const manifest = {
       matches: ['*://*/*'],
     },
   ],
-  // side_panel: {
-  //   default_path: 'side-panel/index.html',
-  // },
 } satisfies ManifestType;
 
 export default manifest;

@@ -31,3 +31,7 @@ Evaluate uses four question types ( single-choice, multi-choice, long input fiel
 - Load project as a chrome extension from generated `./dist` directory. 
 
 Changes to the code will cause websocket connection to automatically reload extension with recent changes.
+
+### Credits 
+
+> This project was boostrapped with the [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) project. 
